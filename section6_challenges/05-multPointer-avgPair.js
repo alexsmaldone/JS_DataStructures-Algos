@@ -5,7 +5,22 @@ the average of the pair equals the target average. There may be more than one
 pair that matches the average target.
 */
 
-function averagePair(sortedArr, target) {}
+function averagePair(sortedArr, target) {
+  let start = 0;
+  let end = sortedArr.length - 1;
+  while (start < sortedArr.length - 1) {
+    if (sortedArr[start] + sortedArr[end] / 2 === target) {
+      return true;
+    }
+    if (sortedArr[start] + sortedArr[end] / 2 > target) {
+      end--;
+    }
+    if (sortedArr[start] + sortedArr[end] / 2 < target) {
+      start++;
+    }
+  }
+  return false;
+}
 
 console.log(averagePair([1, 2, 3], 2.5)); //true
 console.log(averagePair([1, 3, 3, 5, 6, 7, 10, 12, 19], 8)); //true
