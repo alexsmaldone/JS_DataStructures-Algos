@@ -6,15 +6,28 @@ the multiple pointers pattern.
 */
 
 function areThereDuplicates(...args) {
-  //frequency solution
-  let collection = {};
-  for (let val in args) {
-    if (collection[args[val]]) collection[args[val]]++;
-    if (!collection[args[val]]) collection[args[val]] = 1;
-  }
+  //FREQUENCY SOLUTION
+  // let collection = {};
+  // for (let val in args) {
+  //   if (collection[args[val]]) collection[args[val]] += 1;
+  //   if (!collection[args[val]]) collection[args[val]] = 1;
+  // }
 
-  for (let key in collection) {
-    if (collection[key] > 1) return true;
+  // for (let key in collection) {
+  //   if (collection[key] > 1) return true;
+  // }
+  // return false;
+
+  //Multiple-pointers Solution
+  args.sort((a, b) => a > b);
+  let start = 0;
+  let next = 1;
+  while (next < args.length) {
+    if (args[start] === args[next]) {
+      return true;
+    }
+    start++
+    next++
   }
   return false;
 }

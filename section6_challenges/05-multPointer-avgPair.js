@@ -9,13 +9,13 @@ function averagePair(sortedArr, target) {
   let start = 0;
   let end = sortedArr.length - 1;
   while (start < sortedArr.length - 1) {
-    if (sortedArr[start] + sortedArr[end] / 2 === target) {
+    if ((sortedArr[start] + sortedArr[end]) / 2 === target) {
       return true;
     }
-    if (sortedArr[start] + sortedArr[end] / 2 > target) {
+    if ((sortedArr[start] + sortedArr[end]) / 2 > target) {
       end--;
     }
-    if (sortedArr[start] + sortedArr[end] / 2 < target) {
+    if ((sortedArr[start] + sortedArr[end]) / 2 < target) {
       start++;
     }
   }
