@@ -23,11 +23,7 @@ function binarySearch(arr, val) {
     }
     middle = Math.floor((start + end) / 2);
   }
-  if (arr[middle] === val) {
-    return middle;
-  } else {
-    return -1;
-  }
+  return arr[middle] === val ? middle : -1;
 }
 
 console.log(binarySearch([1, 2, 3, 4, 5], 2)); // 1
