@@ -11,15 +11,26 @@ at the end of the array
 */
 
 function binarySearch(arr, val) {
-  let leftIndex = 0;
-  let rightIndex = arr.length - 1;
+  let start = 0;
+  let end = arr.length - 1;
+  let middle = Math.floor((start + end) / 2);
 
-  let left = arr[leftIndex];
-  let right = arr[rightIndex];
-
-  while (left < right) {
-    let middle = arr[Math.floor(0 + arr.length) / 2];
-    if (left === val) return leftIndex;
-    if (right === val) return leftIndex;
+  while (arr[middle] !== val && start <= end) {
+    if (val < arr[middle]) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+    middle = Math.floor((start + end) / 2);
+  }
+  if (arr[middle] === val) {
+    return middle;
+  } else {
+    return -1;
   }
 }
+
+console.log(binarySearch([1, 2, 3, 4, 5], 2)); // 1
+console.log(binarySearch([1, 2, 3, 4, 5], 3)); // 2
+console.log(binarySearch([1, 2, 3, 4, 5], 5)); // 4
+console.log(binarySearch([1, 2, 3, 4, 5], 6)); // 1
