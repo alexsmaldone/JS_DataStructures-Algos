@@ -27,15 +27,27 @@ class SinglyLinkedList {
       this.head = newNode;
       this.tail = newNode;
     } else {
-      this.next = newNode;
+      this.tail.next = newNode;
+      this.tail = newNode;
     }
     this.length++;
+    return this;
   }
+  /*
+- if there are no nodes in the list, return undefined
+- loop through list until you reach tail
+- set the nexdt property of the 2nd to last node ot be null
+- set the tail to be the 2nd to last node
+- decrement the length of the list by 1
+- return value of node removed
+*/
+  pop() {}
 }
 
 let list = new SinglyLinkedList();
 list.push("HELLO");
 list.push("GOODBYE");
+console.log(list);
 
 // let first = new Node("Hi");
 // first.next = new Node("there");
