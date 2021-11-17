@@ -58,6 +58,53 @@ class SinglyLinkedList {
     }
     return current;
   }
+
+  /*
+  - if there are no nodes, return undefined
+  - store current head property in a variable
+  - set head property to be the current head's next property
+  - decrement length by 1
+  - return value of the node removed
+  */
+  shift() {
+    if (!this.head) return undefined;
+    let currentHead = this.head;
+    this.head = currentHead.next;
+
+    this.length--;
+    return currentHead;
+  }
+
+  /*
+  - create new node using value passed to function
+  - if no head on list, set the ehad and tail to be newly createed node
+  - otherwise set newly created nod'es next property to be the current head property on the list
+  - set head property on the list to be that newly created node
+  - increment length of list by 1
+  - return linkedlist
+  */
+  unshift(val) {
+    let newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail - newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+  get() {}
+
+  set() {}
+
+  insert() {}
+
+  remove() {}
+
+  reverse() {}
 }
 
 let list = new SinglyLinkedList();
