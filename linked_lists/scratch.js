@@ -96,15 +96,116 @@ class SinglyLinkedList {
     return this;
   }
 
-  get() {}
+  /*
+  Retrieving number by its position in the index
+  - funciton should accept an index
+  - if index is < 0 or >= legnth of list, return null
+  - loop thru list until you reach index and return node at that specific index
+  */
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
 
-  set() {}
+    let counter = 0;
+    let current = this.head;
+    while (counter !== index) {
+      current = current.next;
+      counter++;
+    }
+    return current;
+  }
 
-  insert() {}
+  /*
+  Changing value of a node based on its position in the LinkedList
+  - function with index and value
+  - use get function to find the specific node
+  - if node is not found, reutnr false
+  - if node is found, set value of that node to be the value passed to the function and return true
+  */
+  set(index, val) {
+    let foundNode = this.get(index);
+    if (foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+  }
 
-  remove() {}
+  /*
+  insert new node at position we specify
+  - if index is < 0 or greater than length, return false
+  - if index is same as the length, push new node to end of lsit
+  - if index is 0, unshift new node to start of list
+  - otherwise using get method, access node at the index - 1
+  - set the next property on that node to be the new node
+  - set next property on new node to be previous next
+  - increment length
+  - return true;
+  */
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
 
-  reverse() {}
+    let newNode = new Node(val);
+    let prev = this.get(index - 1);
+    let temp = prev.next;
+    prev.next = newNode;
+    newNode.next = temp;
+
+    this.length++;
+    return true;
+  }
+
+  /*
+  remove node from linked list at specific position
+  - if index is < 0 or >= length, return undefined
+  - if index is same as length - 1, pop
+  - if index is 0, shift
+  - otherwise, using get method, access the node at index - 1
+  - set next property on that node to be the next of the next node
+  - decrement hte length
+  - return value of the node removed
+  */
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    if ((index = 0)) return this.shift();
+    if ((index = this.length - 1)) return this.pop();
+
+    let previousNode = this.get(index - 1);
+    let removed = previousNode.next;
+    previousNode.next = removed.next;
+
+    this.length--;
+    return removed;
+  }
+
+  /*
+  reverse the linked list in place
+  - swap head and tail
+  - create variables: next, prev,
+  - create variable called node and initialize it to the head property
+  - loop thru the list
+  - set next to be the next property on whatever node is
+  - set the next preperty on the node to be whatever prev is
+  - set prev to be the value of the node variable
+  - set the node variable to be the value of the next variable
+  */
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null;
+    let next;
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
