@@ -139,12 +139,24 @@ class BinarySearchTree {
   - stored the root of the BST in a variable called current
   - write a helper function which acceps a node
   - if the node has a left property, cfall the helper function with the left property on the node
-  - if the node has a right poperty, call the helper function with the right property on the node
   - push value of the node to the variable that stores the values
+  - if the node has a right poperty, call the helper function with the right property on the node
   - invoke the helper function with the current variable
   - return the array of values
   */
-  DFSinOrder() {}
+  DFSinOrder() {
+    let data = [];
+    let current = this.root;
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      data.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+
+    traverse(current);
+    return data;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -156,4 +168,4 @@ tree.insert(3);
 tree.insert(8);
 tree.insert(20);
 
-console.log(tree.DFSpostOrder());
+console.log(tree.DFSinOrder());
